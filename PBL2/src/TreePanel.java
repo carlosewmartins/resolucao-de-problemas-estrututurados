@@ -38,6 +38,6 @@ public class TreePanel extends JPanel {
         g.fillOval(x - 25, y - 25, 50, 50);
 
         g.setColor(Color.BLACK);
-        g.drawString(node.getPlayer().getNickname(), x - 20, y + 5);
+        g.drawString(node.getPlayer().getNickname() + " (" + node.getPlayer().getRanking() + ")", x - 20, y + 5);
     }
 }
