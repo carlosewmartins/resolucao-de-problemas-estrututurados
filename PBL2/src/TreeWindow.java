@@ -11,6 +11,7 @@ public class TreeWindow extends JFrame {
     JButton insertButton;
     JButton searchButton;
     JButton removeButton;
+    JButton inOrderButton;
     JLabel messageLabel;
 
     public TreeWindow() {
@@ -28,6 +29,7 @@ public class TreeWindow extends JFrame {
         insertButton = new JButton("Adicionar");
         searchButton = new JButton("Buscar");
         removeButton = new JButton("Remover");
+        inOrderButton = new JButton("Organizar");
 
         controlPanel.add(new JLabel("Nick:"));
         controlPanel.add(nicknameField);
@@ -36,6 +38,7 @@ public class TreeWindow extends JFrame {
         controlPanel.add(insertButton);
         controlPanel.add(searchButton);
         controlPanel.add(removeButton);
+        controlPanel.add(inOrderButton);
 
         treePanel = new TreePanel(tree.getRoot());
         messageLabel = new JLabel("");
@@ -76,6 +79,12 @@ public class TreeWindow extends JFrame {
             } else {
                 messageLabel.setText("Jogador " + nickname + " não encontrado.");
             }
+        });
+
+        inOrderButton.addActionListener(e -> {
+            System.out.println("=== Jogadores em ordem ===");
+            tree.inOrder();
+            messageLabel.setText("Lista de jogadores impressa no console");
         });
     }
 

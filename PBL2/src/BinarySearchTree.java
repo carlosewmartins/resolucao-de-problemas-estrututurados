@@ -29,7 +29,6 @@ public class BinarySearchTree {
 
     public void inOrder() {
         inOrder(root);
-        System.out.println("Organizando arvore");
     }
 
     private Node insert(Node current, Player player) {
