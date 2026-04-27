@@ -16,8 +16,15 @@ public class BinarySearchTree {
     }
 
     public Player remove(String name) {
+        Node alvo = search(root, name);
+        if (alvo == null) {
+            System.out.println("Jogador " + name + " nao encontrado na arvore");
+            return null;
+        }
+        Player removido = alvo.getPlayer();
+        root = remove(root, removido.getRanking());
         System.out.println("Removendo " + name + " da arvore");
-        return null;
+        return removido;
     }
 
     public void inOrder() {
@@ -59,7 +66,35 @@ public class BinarySearchTree {
         return search(current.getRight(), name);
     }
 
-    private Node remove(Node current, String name) {return null;}
+    private Node remove(Node current, int ranking) {
+        if(current == null){
+            return null;
+        }
+
+        if(ranking < current.getPlayer().getRanking()) {
+           current.setLeft(remove(current.getLeft(), ranking));
+        } else if(ranking > current.getPlayer().getRanking()) {
+            current.setRight(remove(current.getRight(), ranking));
+        } else {
+            if(current.getLeft() == null && current.getRight() == null) {
+                return null;
+            }
+
+            if(current.getLeft() == null) {
+                return current.getRight();
+            }
+
+            if(current.getRight() == null) {
+                return current.getLeft();
+            }
+
+            Node sucessor = encontraMinimo(current.getRight());
+            current.setPlayer(sucessor.getPlayer());
+            current.setRight(remove(current.getRight(), sucessor.getPlayer().getRanking()));
+        }
+
+        return current;
+    }
 
     private void inOrder(Node current) {
         if (current != null) {
@@ -72,6 +107,14 @@ public class BinarySearchTree {
 
     public Node getRoot() {
         return root;
+    }
+
+    // Helper
+    private Node encontraMinimo(Node current){
+        if(current.getLeft() == null){
+            return current;
+        }
+        return encontraMinimo(current.getLeft());
     }
 
 }
