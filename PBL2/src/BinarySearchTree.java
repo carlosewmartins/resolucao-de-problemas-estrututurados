@@ -40,7 +40,6 @@ public class BinarySearchTree {
         } else if (player.getRanking() > current.getPlayer().getRanking()) {
             current.setRight(insert(current.getRight(), player));
         } else {
-            // Criar logica para insert de valor ja existente na arvore
             System.out.println("Ja existe um valor igual na arvore!");
         }
 
@@ -108,7 +107,6 @@ public class BinarySearchTree {
         return root;
     }
 
-    // Helper
     private Node encontraMinimo(Node current){
         if(current.getLeft() == null){
             return current;
