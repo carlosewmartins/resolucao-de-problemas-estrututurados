@@ -81,7 +81,7 @@ public class TreeWindow extends JFrame {
 
     private void loadCSV() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("PBL2/players.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("src/players.csv"));
             br.readLine();
             String line;
             while ((line = br.readLine()) != null) {
